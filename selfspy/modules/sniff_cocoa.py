@@ -133,10 +133,12 @@ class Sniffer:
 
             def receiveSleepNotification_(self, notification):
                 log.info("Received sleep")
+                # TODO track this
 
             def receiveWakeNotification_(self, notification):
                 log.info("Received wake")
                 self.start_current_process()
+                # TODO track this
 
             def receivePowerOffNotification_(self, notification):
                 log.info("Received power off")
@@ -148,6 +150,7 @@ class Sniffer:
             def receiveScreensDidWake_(self, notification):
                 log.info("Received screen wake")
                 self.start_current_process()
+                # TODO track this
 
             def applicationWillResignActive_(self, notification):
                 log.info("Received app will resign")
