@@ -223,7 +223,7 @@ class ActivityStore:
             else:
                 curtext = ''.join(keys)
 
-            keys_to_store = models.Keys(curtext.encode('utf8'), keys, timings, nrkeys,
+            keys_to_store = models.Keys(curtext, keys, timings, nrkeys,
                                  self.started, self.current_window.proc_id,
                                  self.current_window.win_id, self.current_window.geo_id)
             self.session.add(keys_to_store)

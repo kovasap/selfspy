@@ -148,7 +148,7 @@ def maybe_decrypt(s, other_encrypter=None):
 
 
 class Keys(SpookMixin, Base):
-    text = Column(Binary, nullable=False)
+    text = Column(Unicode, nullable=False)
     started = Column(DateTime, nullable=False)
 
     process_id = Column(Integer, ForeignKey('process.id'), nullable=False, index=True)
@@ -180,11 +180,11 @@ class Keys(SpookMixin, Base):
         self.geometry_id = geometry_id
 
     def encrypt_text(self, text, other_encrypter=None):
-        ztext = maybe_encrypt(text.decode('utf-8'), other_encrypter=other_encrypter)
+        ztext = maybe_encrypt(text, other_encrypter=other_encrypter)
         self.text = ztext
 
     def encrypt_keys(self, keys, other_encrypter=None):
-        zkeys = maybe_encrypt(base64.b64encode(zlib.compress(json.dumps(keys).encode('utf-8'))).decode('utf-8'),
+        zkeys = maybe_encrypt(base64.b64encode(zlib.compress(json.dumps(keys).encode('utf-8'))),
                               other_encrypter=other_encrypter)
         self.keys = zkeys
 
@@ -196,7 +196,7 @@ class Keys(SpookMixin, Base):
 
     def decrypt_keys(self):
         keys = maybe_decrypt(self.keys)
-        return json.loads(zlib.decompress(base64.b64decode(keys)))
+        return json.loads(zlib.decompress(base64.b64decode(keys.encode('utf-8'))))
 
     def to_humanreadable(self, text):
         backrex = re.compile("\<\[Backspace\]x?(\d+)?\>",re.IGNORECASE)
