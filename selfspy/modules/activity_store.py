@@ -147,8 +147,8 @@ class ActivityStore:
             cur_geometry = models.Geometry(win_x, win_y, win_width, win_height)
             self.session.add(cur_geometry)
 
-        cur_window = self.session.query(models.Window).filter_by(title=window_name,
-                                                                 process_id=cur_process.id).scalar()
+        cur_window = self.session.query(models.Window).filter_by(
+            title=window_name, process_id=cur_process.id).scalar()
         if not cur_window:
             log.debug(
                 u"Add window(process:{}, window:{})"
@@ -170,6 +170,7 @@ class ActivityStore:
 
         # allows store_key method to log then update the variable
         log.debug("Change screen to: {}".format(args))
+        # print("Change screen to: {}".format(args))
         self.last_screen_change = args
 
 
@@ -223,9 +224,10 @@ class ActivityStore:
             else:
                 curtext = ''.join(keys)
 
-            keys_to_store = models.Keys(curtext, keys, timings, nrkeys,
-                                 self.started, self.current_window.proc_id,
-                                 self.current_window.win_id, self.current_window.geo_id)
+            keys_to_store = models.Keys(
+                curtext, keys, timings, nrkeys,
+                self.started, self.current_window.proc_id,
+                self.current_window.win_id, self.current_window.geo_id)
             self.session.add(keys_to_store)
 
             self.trycommit()

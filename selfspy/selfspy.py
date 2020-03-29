@@ -7,7 +7,7 @@ from configparser import ConfigParser
 from lockfile import LockFile
 
 import hashlib
-from Crypto.Cipher import Blowfish
+# from Crypto.Cipher import Blowfish
 
 from selfspy.modules.logs import set_logger
 
@@ -62,11 +62,13 @@ def parse_config():
 
 
 def make_encrypter(password):
-    if password == "":
-        encrypter = None
-    else:
-        encrypter = Blowfish.new(hashlib.md5(password.encode('utf-8')).digest())
-    return encrypter
+    # if password == "":
+    #     encrypter = None
+    # else:
+    #     encrypter = Blowfish.new(hashlib.md5(password.encode('utf-8')).digest())
+    # return encrypter
+    assert password == ""
+    return None
 
 
 def main():
