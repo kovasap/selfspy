@@ -46,7 +46,7 @@ class SpookMixin(object):
         return cls.__name__.lower()
 
     id = Column(Integer, primary_key=True)
-    created_at = Column(DateTime, default=datetime.datetime.now, index=True)
+    created_at = Column(DateTime, default=datetime.datetime.now(tz=None), index=True)
 
 
 class Process(SpookMixin, Base):
