@@ -90,7 +90,7 @@ class SnifferThread(threading.Thread):
         if event.Ascii in self.remap.keys():
             string = self.remap[event.Ascii]
         else:
-            string = unicode(chr(event.Ascii))
+            string = str(chr(event.Ascii))
         self.key_hook(str(event.Ascii), modifiers, string, False)
         window_name = event.WindowName or ''
         self.screen_hook(str(event.Window), window_name.decode(self.encoding), 0, 0, 0, 0)

@@ -70,6 +70,22 @@ pyHook: http://sourceforge.net/projects/pyhook/files/pyhook/
 pyCrytpo: http://www.voidspace.org.uk/python/modules.shtml#pycrypto   
 pyWin32: http://sourceforge.net/projects/pywin32/files/pywin32/  
 
+#### Install Instructions
+
+1. Download python 3.7 from windows store
+1. Download selfspy repo into user directory
+1. Download pyHook...amd64 from https://www.lfd.uci.edu/~gohlke/pythonlibs/
+1. Run `python -m pip install \<pyhook wheel that was downloaded\>`
+1. Run `python -m pip install dep==version for other dependencies`
+1. Run `python -m pip install pywin32`
+1. Run `python -m pip install pypiwin32`
+1. Copy files `pythoncom37.dll` and `pywintypes37.dll` from
+   `C:\Users\Kovas\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\pywin32_system32`
+   to
+   `C:\Users\Kovas\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\win32\lib`
+1. Run `python setup.py install --user`
+
+
 
 ## Installing Selfspy
 
