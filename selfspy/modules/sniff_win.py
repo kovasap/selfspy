@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Selfspy.  If not, see <http://www.gnu.org/licenses/>.
 
-import pyHook
+import PyHook3
 import pythoncom
 import sys
 import threading
@@ -116,7 +116,7 @@ class Sniffer:
 
     def run(self):
         try:
-            self.hm = pyHook.HookManager()
+            self.hm = PyHook3.HookManager()
             self.thread = SnifferThread(self.hm)
             # pythoncom.PumpMessages needs to be in the same thread as the events
             self.thread.mouse_button_hook = self.mouse_button_hook
