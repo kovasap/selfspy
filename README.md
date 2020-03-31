@@ -93,6 +93,9 @@ pyWin32: http://sourceforge.net/projects/pywin32/files/pywin32/
    `C:\Users\Kovas\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\Scripts\selfspy.exe
    -n -v` in the directory that was opened by the "run" call.  In "properties"
    on this shortcut, set to "minimized" so that it runs minimized on startup.
+1. Create a file `0_remove_selfspy_lock.bat` in the startup directory.  The
+   `0_` prefix makes sure it is executed before the selfspy shortcut.  Add `DEL
+   C:\Users\Kovas\.selfspy\selfspy.pid.lock` to this file.
 
 
 
