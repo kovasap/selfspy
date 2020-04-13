@@ -95,7 +95,7 @@ pyWin32: http://sourceforge.net/projects/pywin32/files/pywin32/
    on this shortcut, set to "minimized" so that it runs minimized on startup.
 1. Create a file `0_remove_selfspy_lock.bat` in the startup directory.  The
    `0_` prefix makes sure it is executed before the selfspy shortcut.  Add `DEL
-   C:\Users\Kovas\.selfspy\selfspy.pid.lock` to this file.
+    H:\selfspy\selfspy.pid.lock` to this file.
 
 One thing to note is that selfspy is laggy and can cause hard crashes (to reboot)
 at least when running pyhook.  One thing that can help this is storing the selfspy
