@@ -23,6 +23,7 @@ import sys
 import threading
 import ctypes
 from win32gui import GetWindowText, GetForegroundWindow
+import win32api
 
 class SnifferThread(threading.Thread):
     def __init__(self, hook):
@@ -50,10 +51,14 @@ class SnifferThread(threading.Thread):
         # self.hm.HookKeyboard()
         # self.hm.HookMouse()
         while True:
-            time.sleep(5)
-            window_name = GetWindowText(GetForegroundWindow())
-            self.screen_hook(window_name, window_name, 1, 1, 1, 100)
+            idle_time = (win32api.GetTickCount() - win32api.GetLastInputInfo()) / 1000.0
+            if idle_time < 3 * 60:
+                # if we are not idle, hit a placeholder key and update the screen
+                self.key_hook('placeholder', [], 'a', False)
+                window_name = GetWindowText(GetForegroundWindow())
+                self.screen_hook(window_name, window_name, 1, 1, 1, 100)
             pythoncom.PumpWaitingMessages()
+            time.sleep(5)
 
 
     def MouseButtons(self, event):
