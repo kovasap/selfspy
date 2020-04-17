@@ -17,11 +17,13 @@
 # along with Selfspy.  If not, see <http://www.gnu.org/licenses/>.
 
 import PyHook3
+import time
 import pythoncom
 import sys
 import threading
 import ctypes
-
+from win32gui import GetWindowText, GetForegroundWindow
+import win32api
 
 class SnifferThread(threading.Thread):
     def __init__(self, hook):
@@ -43,12 +45,20 @@ class SnifferThread(threading.Thread):
         self.hm = hook
 
     def run(self):
-        self.hm.KeyDown = self.KeyboardEvent
-        self.hm.MouseAllButtonsDown = self.MouseButtons
-        self.hm.MouseMove = self.MouseMove
-        self.hm.HookKeyboard()
-        self.hm.HookMouse()
-        pythoncom.PumpMessages()
+        # self.hm.KeyDown = self.KeyboardEvent
+        # self.hm.MouseAllButtonsDown = self.MouseButtons
+        # self.hm.MouseMove = self.MouseMove
+        # self.hm.HookKeyboard()
+        # self.hm.HookMouse()
+        while True:
+            idle_time = (win32api.GetTickCount() - win32api.GetLastInputInfo()) / 1000.0
+            if idle_time < 3 * 60:
+                # if we are not idle, hit a placeholder key and update the screen
+                self.key_hook('placeholder', [], 'a', False)
+                window_name = GetWindowText(GetForegroundWindow())
+                self.screen_hook(window_name, window_name, 1, 1, 1, 100)
+            pythoncom.PumpWaitingMessages()
+            time.sleep(5)
 
 
     def MouseButtons(self, event):
@@ -131,7 +141,7 @@ class Sniffer:
 
     def cancel(self):
         ctypes.windll.user32.PostQuitMessage(0)
-        self.hm.UnhookKeyboard()
-        self.hm.UnhookMouse()
+        # self.hm.UnhookKeyboard()
+        # self.hm.UnhookMouse()
         del self.thread
         del self.hm
