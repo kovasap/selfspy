@@ -21,6 +21,8 @@ import re
 
 import datetime
 
+import platform
+
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy import (
     Index, Column, Boolean, Integer, Unicode, DateTime, Binary, ForeignKey,
@@ -38,6 +40,11 @@ ENCRYPTER = None
 
 Base = declarative_base()
 
+def datetime_now():
+    if platform.system() == 'Windows':
+        return datetime.datetime.now(tz_info=None)
+    else:
+        return datetime.datetime.now()
 
 class SpookMixin(object):
 
@@ -46,7 +53,7 @@ class SpookMixin(object):
         return cls.__name__.lower()
 
     id = Column(Integer, primary_key=True)
-    created_at = Column(DateTime, default=datetime.datetime.now, index=True)
+    created_at = Column(DateTime, default=datetime_now, index=True)
 
 
 class Process(SpookMixin, Base):
