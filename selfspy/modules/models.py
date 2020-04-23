@@ -42,7 +42,7 @@ Base = declarative_base()
 
 def datetime_now():
     if platform.system() == 'Windows':
-        return datetime.datetime.now(tz_info=None)
+        return datetime.datetime.now(tz=None)
     else:
         return datetime.datetime.now()
 
