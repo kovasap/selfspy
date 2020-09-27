@@ -81,6 +81,7 @@ pyWin32: http://sourceforge.net/projects/pywin32/files/pywin32/
    https://simpletutorials.com/c/2135/Installing+SWIG+on+Windows for install
    instructions.  Search for "Environment Variables" in start menu to find
    environment variables option.
+1. PyHook3 also requires visual c++, which can be downloaded from https://visualstudio.microsoft.com/visual-cpp-build-tools/
 1. Run `python -m pip install pywin32`
 1. Run `python -m pip install pypiwin32`
 1. Copy files `pythoncom37.dll` and `pywintypes37.dll` from
