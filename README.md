@@ -81,6 +81,7 @@ pyWin32: http://sourceforge.net/projects/pywin32/files/pywin32/
    https://simpletutorials.com/c/2135/Installing+SWIG+on+Windows for install
    instructions.  Search for "Environment Variables" in start menu to find
    environment variables option.
+1. PyHook3 also requires visual c++, which can be downloaded from https://visualstudio.microsoft.com/visual-cpp-build-tools/
 1. Run `python -m pip install pywin32`
 1. Run `python -m pip install pypiwin32`
 1. Copy files `pythoncom37.dll` and `pywintypes37.dll` from
@@ -91,7 +92,7 @@ pyWin32: http://sourceforge.net/projects/pywin32/files/pywin32/
 1. Search for 'run' in the start menu, then execute "shell:startup".
 1. Create a shortcut to
    `C:\Users\Kovas\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\Scripts\selfspy.exe
-   -n -d H:\selfspy` in the directory that was opened by the "run" call.  In "properties"
+   -n -d -v H:\selfspy` in the directory that was opened by the "run" call.  In "properties"
    on this shortcut, set to "minimized" so that it runs minimized on startup.
 1. Create a file `0_remove_selfspy_lock.bat` in the startup directory.  The
    `0_` prefix makes sure it is executed before the selfspy shortcut.  Add `DEL
